@@ -12,6 +12,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 call plug#end()
@@ -33,6 +34,11 @@ syntax on
 set scrolloff=8
 set cindent
 set smartindent
+set colorcolumn=80
+highlight colorcolumn ctermbg=8 guibg=#cccccc
+colorscheme default
+
+let g:markdown_fenced_languages = ['html', 'c', 'bash']
 
 let g:vimwiki_list = [{'path': '~/Documents/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 
@@ -43,7 +49,8 @@ nnoremap <leader>g :Goyo \| set bg=dark\| set linebreak<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>m :!./build.sh<CR>
-nnoremap <leader>r :!./out<CR>
+nnoremap <leader>r :!./build.sh && ./out<CR>
 " gc is a comment (from plugin)
+" cs is a surround change, ex.: cs"' to change from "text" to 'text'
 
 

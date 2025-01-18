@@ -31,6 +31,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'ThePrimeagen/harpoon'
 call plug#end()
 
+
 " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Plug 'junegunn/fzf.vim'
 
@@ -52,7 +53,7 @@ syntax on
 set scrolloff=8
 set cindent
 set smartindent
-set colorcolumn=80
+" set colorcolumn=80
 "highlight colorcolumn ctermbg=8 guibg=#cccccc
 " colorscheme default
 " colorscheme desert
@@ -61,7 +62,7 @@ set colorcolumn=80
 " colorscheme ron
 " colorscheme torte
 colorscheme handmade-hero
-highlight ColorColumn ctermbg=darkgrey guibg=#2E3440
+" highlight ColorColumn ctermbg=darkgrey guibg=#2E3440
 
 let g:markdown_fenced_languages = ['html', 'c', 'bash']
 let g:vimwiki_list = [{'path': '~/Documents/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
@@ -82,7 +83,8 @@ nnoremap <leader>g :Goyo \| set bg=dark\| set linebreak<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>m :!./build.sh<CR>
-nnoremap <leader>r :!./build.sh && ./out<CR>
+nnoremap <leader>rr :!./build.sh && ./out<CR>
+nnoremap <leader>rt :terminal ./out<CR>
 " gc is a comment (default from plugin)
 " cs is a surround change, ex.: cs"' to change from "text" to 'text'
 nnoremap <leader>e :Ex<CR>

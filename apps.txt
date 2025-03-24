@@ -41,4 +41,5 @@ moreutils
 ntfs-3g
 wireplumber
 pulsemixer
+fuse
 

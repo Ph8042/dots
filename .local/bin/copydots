@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# config
+CONFIG_DIR="$HOME/.config"
+LOCALBIN_DIR="$HOME/.local/bin"
+
+DOTFILES_DIR="$HOME/Dev/dots"
+DOTFILES_CONFIG_DIR="$HOME/Dev/dots/.config"
+DOTFILES_LOCALBIN_DIR="$HOME/Dev/dots/.local/bin"
+
+if [ ! -d "$DOTFILES_DIR" ]; then
+    echo "creating dir dotfiles: $DOTFILES_CONFIG_DIR"
+    mkdir -p "$DOTFILES_CONFIG_DIR"
+    echo "creating dir dotfiles: $DOTFILES_LOCALBIN_DIR"
+    mkdir -p "$DOTFILES_LOCALBIN_DIR"
+fi
+
+find "$CONFIG_DIR" -mindepth 1 -maxdepth 1 | while read -r item; do
+    item_name=$(basename "$item")
+    target="$DOTFILES_CONFIG_DIR/$item_name"
+    
+    if [ -e "$target" ]; then
+        if ! diff -qr "$item" "$target" >/dev/null 2>&1; then
+            echo "copying changed file: $item_name"
+            cp -rfu "$item" "$DOTFILES_CONFIG_DIR/"
+        fi
+    else
+        echo "copying new: $item_name"
+        cp -r "$item" "$DOTFILES_CONFIG_DIR/"
+    fi
+done
+
+find "$LOCALBIN_DIR" -mindepth 1 -maxdepth 1 | while read -r item; do
+    item_name=$(basename "$item")
+    target="$DOTFILES_LOCALBIN_DIR/$item_name"
+    
+    if [ -e "$target" ]; then
+        if ! diff -qr "$item" "$target" >/dev/null 2>&1; then
+            echo "copying changed file: $item_name"
+            cp -rfu "$item" "$DOTFILES_LOCALBIN_DIR/"
+        fi
+    else
+        echo "copying new: $item_name"
+        cp -r "$item" "$DOTFILES_LOCALBIN_DIR/"
+    fi
+done
+
+echo "dots update finished"

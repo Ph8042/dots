@@ -29,6 +29,8 @@ Plug 'nvim-telescope/telescope-media-files.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'ThePrimeagen/harpoon'
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'
 call plug#end()
 
 
@@ -50,7 +52,7 @@ set laststatus=0
 set bg=dark
 filetype plugin on
 syntax on
-set scrolloff=8
+set scrolloff=5
 set cindent
 set smartindent
 " set colorcolumn=80
@@ -70,14 +72,14 @@ let $FZF_DEFAULT_OPTS='--bind ctrl-j:down,ctrl-k:up'
 "let g:airline_theme='simple'
 let g:airline_theme='ubaryd'
 
-" function! SearchInFiles()
-"   let query = input('Search for > ')
-"   let command = 'rg --vimgrep --smart-case ' . shellescape(query)
-"   call fzf#vim#grep(command, 1, {'options': '--delimiter=: --preview "bat --style=numbers --color=always {1} --highlight-line={2}"'})
-" endfunction
+function! SearchInFiles()
+  let query = input('Search for > ')
+  let command = 'rg --vimgrep --smart-case ' . shellescape(query)
+  call fzf#vim#grep(command, 1, {'options': '--delimiter=: --preview "bat --style=numbers --color=always {1} --highlight-line={2}"'})
+endfunction
 
 " maps
-" nnoremap <leader>s :call SearchInFiles()<CR>
+nnoremap <leader>s :call SearchInFiles()<CR>
 " nnoremap <leader>f :Files .<CR>
 nnoremap <leader>g :Goyo \| set bg=dark\| set linebreak<CR>
 nnoremap <leader>q :q<CR>
@@ -92,7 +94,7 @@ nnoremap <leader>e :Ex<CR>
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>f <cmd>Telescope find_files<CR>
-nnoremap <leader>s <cmd>Telescope live_grep<CR>
+" nnoremap <leader>s <cmd>Telescope live_grep<CR>
 " nnoremap <leader>fb <cmd>Telescope buffers<CR>
 " nnoremap <leader>fh <cmd>Telescope help_tags<CR>
 

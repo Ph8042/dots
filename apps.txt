@@ -42,4 +42,7 @@ ntfs-3g
 wireplumber
 pulsemixer
 fuse
+nsxiv
+rtl-sdr
+
 

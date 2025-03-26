@@ -45,5 +45,6 @@ pulsemixer
 fuse
 nsxiv
 rtl-sdr
+libnotify
 
 
